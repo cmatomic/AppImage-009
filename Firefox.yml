@@ -66,3 +66,22 @@ script:
 
 post:
   - cp ../firefox/libnss3.so usr/bin # Override excludelist
+  - rm usr/bin/browser/features/{firefox@getpocket.com,onboarding@mozilla.org,activity-stream@mozilla.org,aushelper@mozilla.org,followonsearch@mozilla.com,formautofill@mozilla.org}.xpi || true
+  - # Workaround for:
+  - # https://bugzilla.mozilla.org/show_bug.cgi?id=296568
+  - cat > firefox.desktop <<EOF
+  - [Desktop Entry]
+  - Type=Application
+  - Name=Firefox
+  - Icon=firefox
+  - Exec=firefox %u
+  - Categories=GNOME;GTK;Network;WebBrowser;
+  - MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;image/gif;image/jpeg;image/png;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;x-scheme-handler/chrome;video/webm;application/x-xpinstall;
+  - StartupNotify=true
+  - EOF
+  - wget -c "https://raw.githubusercontent.com/AppImage/AppImages/master/recipes/Firefox_mozilla.cfg" -O usr/bin/mozilla.cfg
+  - wget -c "https://raw.githubusercontent.com/AppImage/AppImages/master/recipes/Firefox_00_admin-prefs.js" -O usr/bin/defaults/pref/00_admin-prefs.js
+  - rm usr/bin/browser/blocklist.xml # Contains app.update. settings; maybe this helps to disable the nag screens
+
+post:
+  - cp ../firefox/libnss3.so usr/bin # Override excludelist
