@@ -3,7 +3,7 @@
 ### If you would like to see an officially-supported Firefox AppImage, then please join the discussion on
 ### https://bugzilla.mozilla.org/show_bug.cgi?id=1249971
 
-#### Alternatively, you can generate your own Appimage from Firefox.
+#### Alternatively, you can generate your own Appimage  Firefox.
 
 
 This sequence of commands will download the necessary files and execute them to generate the Firefox appimage, then you can access the out folder and click on the generated appimage.
