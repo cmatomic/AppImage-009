@@ -4,8 +4,12 @@
 # https://bugzilla.mozilla.org/show_bug.cgi?id=1249971
 
 app: Firefox
-
 ingredients:
+   packages: 
+    - libavcodec-extra
+  dist:  xenial
+  sources:
+    - deb "http://archive.ubuntu.com/ubuntu/  xenial main universe"
   script:
     - DLD=$(wget -q "https://www.mozilla.org/en-US/firefox/all/" -O - | grep -E "os=linux64&amp;lang=en-US" | cut -d'"' -f2 | head -n 1)
     - wget -c $DLD --trust-server-names
